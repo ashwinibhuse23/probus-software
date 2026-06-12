@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigate } from 'react-router-dom';
-import erpImage from '../assets/images/ERP.jpg';
+import erpImage from '../assets/Images/ERP.jpg';
 // import HRMSImage from '../assets/images/HRMS solution.jpg';
-import customSoftwareImage from '../assets/images/custom software.jpg';
-import OceanImage from '../assets/images/OceanFms.png';
-import KompassImage from '../assets/images/kompass.png';
+import customSoftwareImage from '../assets/Images/custom software.jpg';
+import OceanImage from '../assets/Images/OceanFms.png';
+import KompassImage from '../assets/Images/kompass.png';
 import {
   LuUsers,
   LuWallet,
