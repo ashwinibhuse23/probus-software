@@ -1,0 +1,382 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+@layer utilities {
+  .font-outfit {
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .anim-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .anim-delay-500 {
+    animation-delay: 500ms;
+  }
+
+  .anim-delay-700 {
+    animation-delay: 700ms;
+  }
+
+  .anim-delay-900 {
+    animation-delay: 900ms;
+  }
+
+  .anim-delay-1100 {
+    animation-delay: 1100ms;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* From Uiverse.io by nikk7007 */
+.bubbles {
+  --c1: #ffffff;
+  --c2: #0070c2;
+  overflow: hidden;
+  position: relative;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+  z-index: 1;
+}
+
+.bubbles>span,
+.bubbles>div,
+.bubbles>svg {
+  position: relative;
+  z-index: 2;
+  transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.bubbles::before {
+  top: 0;
+  left: 0;
+}
+
+.bubbles::after {
+  top: 100%;
+  left: 100%;
+}
+
+.bubbles::before,
+.bubbles::after {
+  content: "";
+  width: 150%;
+  aspect-ratio: 1/1;
+  scale: 0;
+  transition: 1000ms cubic-bezier(0.76, 0, 0.24, 1);
+
+  background-color: var(--c2);
+  border-radius: 50%;
+
+  position: absolute;
+  translate: -50% -50%;
+  z-index: -1;
+}
+
+.bubbles:hover {
+  border-color: var(--c2);
+  box-shadow: 0 0 20px rgba(0, 112, 194, 0.4);
+}
+
+.bubbles:hover::before,
+.bubbles:hover::after {
+  scale: 1;
+}
+
+.bubbles:active {
+  scale: 0.98;
+  filter: brightness(0.9);
+}
+
+/* Stylish Neon Shine Button */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.btn-neon::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent);
+  transition: all 0.6s ease;
+  z-index: -1;
+}
+
+.btn-neon:hover {
+  background-color: rgba(0, 112, 194, 0.9);
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(0, 112, 194, 0.5), 0 0 30px rgba(0, 112, 194, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* AboutSection Cards - Adapted from Uiverse.io by Smit-Prajapati */
+.about-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  transition: all 0.6s ease-in-out;
+  border: 1px solid #f1f5f9;
+  min-height: 220px;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 112, 194, 0.15);
+}
+
+.about-card-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 100% 107%, #f8faff 0%, #e0e7ff 30%, #bfdbfe 60%, #93c5fd 100%);
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.about-card:hover .about-card-bg {
+  opacity: 1;
+}
+
+.about-card-content {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  transition: all 0.6s ease-in-out;
+  z-index: 10;
+}
+
+.about-card:hover .about-card-content {
+  transform: translate(0, -5px);
+}
+
+.about-box {
+  position: absolute;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  border-top: 2px solid rgba(255, 255, 255, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 10% 13% 42% 0% / 10% 12% 75% 0%;
+  box-shadow: -7px 7px 29px 0px rgba(0, 112, 194, 0.1);
+  transform-origin: bottom left;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.about-card:hover .about-box {
+  bottom: -1px;
+  left: -1px;
+}
+
+/* Box 1 - Largest */
+.about-box1 {
+  width: 70%;
+  height: 70%;
+  bottom: -70%;
+  left: -70%;
+}
+
+.about-box1::before {
+  background: radial-gradient(circle at 30% 107%, rgba(0, 112, 194, 0.1) 0%, rgba(59, 130, 246, 0.2) 90%);
+}
+
+.about-card:hover .about-box1::before {
+  opacity: 1;
+}
+
+/* Box 2 - Medium (Contains Icon) */
+.about-box2 {
+  width: 50%;
+  height: 50%;
+  bottom: -50%;
+  left: -50%;
+  transition-delay: 0.1s;
+}
+
+.about-box2::before {
+  background: radial-gradient(circle at 30% 107%, rgba(96, 165, 250, 0.2) 0%, rgba(37, 99, 235, 0.4) 90%);
+}
+
+.about-card:hover .about-box2::before {
+  opacity: 1;
+}
+
+/* Box 3 - Small */
+.about-box3 {
+  width: 30%;
+  height: 30%;
+  bottom: -30%;
+  left: -30%;
+  transition-delay: 0.2s;
+}
+
+.about-box3::before {
+  background: radial-gradient(circle at 30% 107%, rgba(147, 197, 253, 0.3) 0%, rgba(29, 78, 216, 0.6) 90%);
+}
+
+.about-card:hover .about-box3::before {
+  opacity: 1;
+}
+
+/* Box 4 - Tiny */
+.about-box4 {
+  width: 10%;
+  height: 10%;
+  bottom: -10%;
+  left: -10%;
+  transition-delay: 0.3s;
+}
+
+/* From Uiverse.io by nikk7007 */ 
+.slice {
+  --c1: #ffffff;
+  --c2: #0070c2;
+  --size-letter: 12px;
+  padding: 0.625rem 1.25rem;
+  font-size: var(--size-letter);
+  background-color: transparent;
+  border: 1px solid rgba(0, 112, 194, 0.4);
+  border-radius: 9999px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+  transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.slice > .text {
+  font-weight: 600;
+  color: var(--c2);
+  position: relative;
+  z-index: 1;
+  transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+  white-space: nowrap;
+}
+
+.slice::after {
+  content: "";
+  width: 0;
+  height: calc(300% + 1em);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  background-color: var(--c2);
+  transition: 1000ms cubic-bezier(0.83, 0, 0.17, 1);
+  z-index: -1;
+}
+
+.slice:hover {
+  border-color: var(--c2);
+}
+
+.slice:hover > .text {
+  color: var(--c1);
+}
+
+.slice:hover::after {
+  width: calc(150% + 1em);
+}
+
+.slice:active {
+  scale: 0.98;
+  filter: brightness(0.9);
+}
