@@ -22,12 +22,12 @@ import aboutBg from '../assets/Images/aboutback.jpg';
 import about1 from '../assets/Images/about1.jpg';
 import about2 from '../assets/Images/about2.jpg';
 import whyProbusImg from '../assets/Images/why_probus_workspace.png';
-import leaderBalajiSir from '../Leaders/Balaji sir.jpeg';
-import leaderBhushanSir from '../Leaders/Bhushan Sir.png';
-import leaderDheerendraSir from '../Leaders/Dheerendra sir.jpeg';
-import leaderGiriish from '../Leaders/Giriish Bodhale.jpeg';
-import leaderSamruddhi from '../Leaders/samruddhi mam.png';
-import leaderSwarajDas from '../Leaders/Swaraj Das.jpeg';
+import leaderBalajiSir from '../assets/Leaders/Balaji sir.jpeg';
+import leaderBhushanSir from '../assets/Leaders/Bhushan Sir.png';
+import leaderDheerendraSir from '../assets/Leaders/Dheerendra sir.jpeg';
+import leaderGiriish from '../assets/Leaders/Giriish Bodhale.jpeg';
+import leaderSamruddhi from '../assets/Leaders/samruddhi mam.png';
+import leaderSwarajDas from '../assets/Leaders/Swaraj Das.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -207,7 +207,7 @@ const About = () => {
             <span className="text-sm font-semibold tracking-wide text-white uppercase">Who We Are</span>
           </div>
 
-          <h1 className="hero-reveal text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-8">
+          <h1 className="hero-reveal text-5xl md:text-5xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-8">
             Pioneering the future of <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-blue-400">
               Digital Transformation
