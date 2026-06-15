@@ -22,12 +22,12 @@ import aboutBg from '../assets/Images/aboutback.jpg';
 import about1 from '../assets/Images/about1.jpg';
 import about2 from '../assets/Images/about2.jpg';
 import whyProbusImg from '../assets/Images/why_probus_workspace.png';
-import leaderBalajiSir from '../assets/Leaders/Balaji sir.jpeg';
-import leaderBhushanSir from '../assets/Leaders/Bhushan Sir.png';
-import leaderDheerendraSir from '../assets/Leaders/Dheerendra sir.jpeg';
-import leaderGiriish from '../assets/Leaders/Giriish Bodhale.jpeg';
-import leaderSamruddhi from '../assets/Leaders/samruddhi mam.png';
-import leaderSwarajDas from '../assets/Leaders/Swaraj Das.jpeg';
+import leaderBalajiSir from '../assets/Leaders/Balajisir.jpeg';
+import leaderBhushanSir from '../assets/Leaders/BhushanSir.png';
+import leaderDheerendraSir from '../assets/Leaders/Dheerendrasir.jpeg';
+import leaderGiriish from '../assets/Leaders/GiriishBodhale.jpeg';
+import leaderSamruddhi from '../assets/Leaders/samruddhimam.png';
+import leaderSwarajDas from '../assets/Leaders/SwarajDas.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
