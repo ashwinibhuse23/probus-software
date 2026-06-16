@@ -16,21 +16,20 @@ const categorySortOrder = [
   'Service Industry',
   'IFM and Security Services',
   'Logistics and Trading',
-  'Food Industry & Agro',
-  'Clients Through Partners'
+  'Food Industry & Agro'
 ];
 
 // LogoCard component
 const LogoCard = ({ logo }) => (
   <div
-    className="group relative bg-white border border-slate-100 hover:border-blue-200 rounded-xl h-16 w-36 flex-shrink-0 flex items-center justify-center p-3 shadow-sm hover:shadow-[0_8px_20px_rgba(0,112,194,0.1)] hover:-translate-y-0.5 transition-all duration-400 ease-out mx-2"
+    className="group relative bg-white border border-slate-100 hover:border-blue-200 rounded-2xl h-20 w-32 flex-shrink-0 flex items-center justify-center p-2 shadow-sm hover:shadow-[0_8px_25px_rgba(0,112,194,0.08)] hover:-translate-y-0.5 transition-all duration-400 ease-out mx-2.5"
     title={logo.name}
   >
-    <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/0 to-blue-50/50 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/0 to-blue-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
     <img
       src={logo.url}
       alt={logo.name}
-      className="max-h-12 max-w-[90%] object-contain opacity-100 group-hover:scale-105 transition-transform duration-400 ease-out z-10"
+      className="max-h-[85%] max-w-[92%] object-contain opacity-100 group-hover:scale-105 transition-transform duration-400 ease-out z-10"
       loading="lazy"
     />
   </div>
@@ -40,11 +39,13 @@ const ClientsSection = () => {
   const sectionRef = useRef(null);
   const [activeTab, setActiveTab] = useState('');
   const [groupedLogos, setGroupedLogos] = useState({});
+  const [partnerLogos, setPartnerLogos] = useState([]);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const logoModules = import.meta.glob('../assets/logo/**/*.png', { eager: true });
     const groups = {};
+    const partners = [];
 
     Object.entries(logoModules).forEach(([path, module]) => {
       const parts = path.split('/');
@@ -55,12 +56,17 @@ const ClientsSection = () => {
         const name = filename.replace(/\.png$/i, '').replace(/[-_]/g, ' ');
         const url = module.default || module;
 
-        if (!groups[cleanCategory]) groups[cleanCategory] = [];
-        groups[cleanCategory].push({ name, url, path });
+        if (cleanCategory === 'Clients Through Partners') {
+          partners.push({ name, url, path });
+        } else {
+          if (!groups[cleanCategory]) groups[cleanCategory] = [];
+          groups[cleanCategory].push({ name, url, path });
+        }
       }
     });
 
     setGroupedLogos(groups);
+    setPartnerLogos(partners);
 
     const sortedKeys = Object.keys(groups).sort((a, b) => {
       const idxA = categorySortOrder.indexOf(a);
@@ -108,14 +114,37 @@ const ClientsSection = () => {
 
   const activeLogos = groupedLogos[activeTab] || [];
 
-  // Split logos into two rows
-  const mid = Math.ceil(activeLogos.length / 2);
-  const row1 = activeLogos.slice(0, mid);
-  const row2 = activeLogos.slice(mid);
+  // Helper to repeat logos so marquee is smooth and seamless without gaps on large screens
+  const getRepeatedLogos = (logosList) => {
+    if (!logosList || logosList.length === 0) return [];
+    const minBaseLength = 12;
+    const repeats = Math.ceil(minBaseLength / logosList.length);
+    const base = [];
+    for (let i = 0; i < repeats; i++) {
+      base.push(...logosList);
+    }
+    return [...base, ...base];
+  };
 
-  // Duplicate for infinite seamless loop
-  const row1Doubled = [...row1, ...row1];
-  const row2Doubled = [...row2, ...row2];
+  // Decide if we should show one row or two
+  const isSingleRow = activeLogos.length <= 8;
+
+  const row1 = isSingleRow ? activeLogos : activeLogos.slice(0, Math.ceil(activeLogos.length / 2));
+  const row2 = isSingleRow ? [] : activeLogos.slice(Math.ceil(activeLogos.length / 2));
+
+  const row1Doubled = getRepeatedLogos(row1);
+  const row2Doubled = getRepeatedLogos(row2);
+
+  const isManufacturing = activeTab === 'Manufacturing Industry';
+  const speedRow1 = isManufacturing ? '60s' : '30s';
+  const speedRow2 = isManufacturing ? '65s' : '35s';
+
+  const partnerIsSingleRow = true;
+  const partnerRow1 = partnerIsSingleRow ? partnerLogos : partnerLogos.slice(0, Math.ceil(partnerLogos.length / 2));
+  const partnerRow2 = partnerIsSingleRow ? [] : partnerLogos.slice(Math.ceil(partnerLogos.length / 2));
+
+  const partnerRow1Doubled = getRepeatedLogos(partnerRow1);
+  const partnerRow2Doubled = getRepeatedLogos(partnerRow2);
 
   const sortedCategories = Object.keys(groupedLogos).sort((a, b) => {
     const idxA = categorySortOrder.indexOf(a);
@@ -135,14 +164,7 @@ const ClientsSection = () => {
       <div className="max-w-[90rem] mx-auto px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="clients-header max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm mb-6">
-            <span className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-50">
-              <span className="w-2 h-2 rounded-full bg-[#0070c2] animate-pulse" />
-            </span>
-            <span className="text-xs font-semibold tracking-wide text-slate-700 uppercase pr-2">Our Network</span>
-          </div>
-
+        <div className="clients-header max-w-3xl mx-auto text-center mb-10">
           <h2 className="text-3xl sm:text-[32px] font-outfit font-bold text-slate-900 leading-[1.2] mb-4 tracking-tight">
             What Our Clients Say <br />
             <span className="inline-block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-[#0070c2] to-blue-500">
@@ -150,9 +172,16 @@ const ClientsSection = () => {
             </span>
           </h2>
 
-          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-6">
             We take pride in helping organizations achieve their business goals through technology. Here's what our clients have to say about partnering with Probus Software.
           </p>
+
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm mt-8">
+            <span className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-50">
+              <span className="w-2 h-2 rounded-full bg-[#0070c2] animate-pulse" />
+            </span>
+            <span className="text-xs font-semibold tracking-wide text-slate-700 uppercase pr-2">Our Clients</span>
+          </div>
         </div>
 
         {/* Category Tabs */}
@@ -163,8 +192,8 @@ const ClientsSection = () => {
                 key={category}
                 onClick={() => handleTabChange(category)}
                 className={`px-5 py-2.5 rounded-full font-outfit font-semibold text-sm transition-all duration-300 shrink-0 select-none shadow-sm ${activeTab === category
-                  ? 'bg-[#0070c2] text-white shadow-[#0070c2]/25 shadow-lg scale-105'
-                  : 'bg-white border border-slate-200/80 text-slate-600 hover:text-[#0070c2] hover:border-[#0070c2]/40 hover:-translate-y-0.5'
+                  ? 'bg-gradient-to-r from-[#0070c2] to-blue-600 text-white shadow-lg shadow-[#0070c2]/25 scale-105'
+                  : 'bg-white border border-slate-200 text-slate-600 hover:text-[#0070c2] hover:border-[#0070c2]/30 hover:-translate-y-0.5'
                   }`}
               >
                 {category}
@@ -189,7 +218,7 @@ const ClientsSection = () => {
                 <div
                   className="flex"
                   style={{
-                    animation: 'marquee 30s linear infinite',
+                    animation: `marquee ${speedRow1} linear infinite`,
                     width: 'max-content',
                   }}
                   onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
@@ -208,7 +237,7 @@ const ClientsSection = () => {
                 <div
                   className="flex"
                   style={{
-                    animation: 'marquee 35s linear infinite reverse',
+                    animation: `marquee ${speedRow2} linear infinite reverse`,
                     width: 'max-content',
                   }}
                   onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
@@ -224,7 +253,66 @@ const ClientsSection = () => {
           </div>
         </div>
 
+        {/* Clients Through Partners Sub-section */}
+        {partnerLogos.length > 0 && (
+          <div className="mt-2 pt-3 border-t border-slate-200/50 text-center">
+            {/* Tag / Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm mb-4">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-50">
+                <span className="w-2 h-2 rounded-full bg-[#0070c2]" />
+              </span>
+              <span className="text-xs font-semibold tracking-wide text-slate-700 uppercase pr-2">Clients Through Partners</span>
+            </div>
 
+            {/* Single/Double Slider Marquee */}
+            <div className="clients-slider relative -mx-6 lg:-mx-8 overflow-hidden">
+              {/* Left fade edge */}
+              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#f8faff] to-transparent z-10 pointer-events-none" />
+              {/* Right fade edge */}
+              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#f8faff] to-transparent z-10 pointer-events-none" />
+
+              <div className="py-4 space-y-3">
+                {/* Row 1 — scrolls left */}
+                {partnerRow1.length > 0 && (
+                  <div className="flex overflow-hidden group/row">
+                    <div
+                      className="flex"
+                      style={{
+                        animation: 'marquee 30s linear infinite',
+                        width: 'max-content',
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
+                      onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
+                    >
+                      {partnerRow1Doubled.map((logo, idx) => (
+                        <LogoCard key={`partner-r1-${idx}`} logo={logo} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Row 2 — scrolls right (reverse) */}
+                {partnerRow2.length > 0 && (
+                  <div className="flex overflow-hidden">
+                    <div
+                      className="flex"
+                      style={{
+                        animation: 'marquee 35s linear infinite reverse',
+                        width: 'max-content',
+                      }}
+                      onMouseEnter={e => e.currentTarget.style.animationPlayState = 'paused'}
+                      onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
+                    >
+                      {partnerRow2Doubled.map((logo, idx) => (
+                        <LogoCard key={`partner-r2-${idx}`} logo={logo} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

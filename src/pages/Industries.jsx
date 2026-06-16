@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   LuFactory, LuWrench, LuCar, LuHeartPulse,
   LuTruck, LuBriefcase, LuChefHat, LuArrowRight,
-  LuCheck,
+  LuCheck
 } from 'react-icons/lu';
 
 import industriesBg     from '../assets/Images/industriesback.png';
@@ -23,11 +23,11 @@ const industries = [
     id: 'manufacturing',
     badge: 'Manufacturing',
     title: 'Manufacturing',
-    accent: 'Industry',
+    accent: 'Industry ERP',
     icon: LuFactory,
     image: imgManufacturing,
     description:
-      'Robust ERP and production management systems that streamline factory operations, reduce downtime and enable real-time visibility across your entire manufacturing value chain.',
+      'Robust ERP and production management systems designed to streamline factory operations, eliminate operational bottlenecks, and provide real-time visibility across your entire manufacturing supply chain.',
     points: [
       'Production Planning & Scheduling',
       'Shop Floor Control & Monitoring',
@@ -43,11 +43,11 @@ const industries = [
     id: 'engineering',
     badge: 'Engineering',
     title: 'Engineering &',
-    accent: 'Projects',
+    accent: 'Project Control',
     icon: LuWrench,
     image: imgEngineering,
     description:
-      'Purpose-built software for engineering firms — project lifecycle management, CAD integration, procurement and compliance tracking across complex multi-site projects.',
+      'Purpose-built solutions for engineering and project firms. Track project life cycles, manage resources across multi-site operations, and automate multi-vendor procurement processes with ease.',
     points: [
       'Project Lifecycle Management',
       'Resource & Asset Tracking',
@@ -63,11 +63,11 @@ const industries = [
     id: 'automotive',
     badge: 'Automotive',
     title: 'Automotive &',
-    accent: 'Mobility',
+    accent: 'Dealer Operations',
     icon: LuCar,
     image: imgAutomotive,
     description:
-      'Drive efficiency across your automotive supply chain with integrated dealer management, warranty tracking, parts inventory and production control solutions.',
+      'Drive operations across your automotive value chain. Optimize parts inventory, manage dealer networks, track warranties, and integrate supplier activities under one unified platform.',
     points: [
       'Dealer Management System (DMS)',
       'Parts & Inventory Control',
@@ -83,11 +83,11 @@ const industries = [
     id: 'healthcare',
     badge: 'Healthcare',
     title: 'Healthcare &',
-    accent: 'Life Sciences',
+    accent: 'Clinical Care',
     icon: LuHeartPulse,
     image: imgHealthcare,
     description:
-      'Empower healthcare providers with digital solutions that improve patient outcomes — from hospital information systems and clinical workflows to billing and telehealth platforms.',
+      'Empower clinical providers with digital medical record systems, streamlined patient scheduling, robust hospital info grids, and fully compliant insurance billing structures.',
     points: [
       'Hospital Information System (HIS)',
       'Patient Management & EMR',
@@ -103,11 +103,11 @@ const industries = [
     id: 'logistics',
     badge: 'Logistics',
     title: 'Logistics &',
-    accent: 'Supply Chain',
+    accent: 'Fleet Automation',
     icon: LuTruck,
     image: imgLogistics,
     description:
-      'End-to-end logistics technology connecting warehouses, fleets and delivery networks in real time — reducing cost and improving SLAs across your supply chain.',
+      'End-to-end logistics solutions connecting warehouses, fleets, and dispatch routes in real time. Minimize operational overhead, boost delivery SLAs, and track shipments instantly.',
     points: [
       'Warehouse Management (WMS)',
       'Fleet & Transport Tracking',
@@ -123,11 +123,11 @@ const industries = [
     id: 'services',
     badge: 'Prof. Services',
     title: 'Professional',
-    accent: 'Services',
+    accent: 'Business Services',
     icon: LuBriefcase,
     image: imgServices,
     description:
-      'Tailored CRM, project management and workforce automation enabling better client relationships, efficient delivery and measurable business performance.',
+      'Client relationship dashboards and workforce automation that simplify scheduling, project tracking, billing processes, and resource utilization across your organization.',
     points: [
       'CRM & Client Management',
       'Project & Task Management',
@@ -143,11 +143,11 @@ const industries = [
     id: 'food',
     badge: 'Food & Beverage',
     title: 'Food &',
-    accent: 'Beverage',
+    accent: 'Traceable Processing',
     icon: LuChefHat,
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1605000797499-95a51c7e99ae?w=900&q=80',
     description:
-      'From farm to fork — recipe management, batch production, traceability, regulatory compliance and distribution management for food manufacturers and processors.',
+      'Complete batch formulation, recipe coordination, cold storage mapping, and FSSAI safety compliance modules tailored for food manufacturing and distribution organizations.',
     points: [
       'Recipe & Batch Management',
       'Traceability & Food Safety (FSSAI)',
@@ -161,122 +161,61 @@ const industries = [
   },
 ];
 
-/* ─── Industry Card ─────────────────────────────────────── */
-const IndustryCard = ({ ind, idx }) => {
-  const Icon = ind.icon;
-  return (
-    <div className="ind-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl hover:shadow-blue-500/8 hover:-translate-y-1 transition-all duration-300">
-      {/* Image */}
-      <div className="relative overflow-hidden h-48">
-        <img
-          src={ind.image}
-          alt={ind.badge}
-          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1526]/70 via-[#0a1526]/20 to-transparent" />
-
-        {/* Badge on image */}
-        <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0070c2] text-white text-xs font-bold tracking-wide shadow-lg">
-            <span className="w-1.5 h-1.5 rounded-full bg-white/80" />
-            {ind.badge}
-          </span>
-        </div>
-
-        {/* Number badge bottom-right */}
-        <div className="absolute bottom-4 right-4 w-9 h-9 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center">
-          <span className="text-white font-bold text-xs">0{idx + 1}</span>
-        </div>
-      </div>
-
-      {/* Card body */}
-      <div className="p-6">
-        {/* Icon + title row */}
-        <div className="flex items-start gap-3 mb-3">
-          <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
-            <Icon className="text-[#0070c2] text-base" />
-          </div>
-          <h3 className="text-lg font-bold text-slate-900 leading-snug tracking-tight">
-            {ind.title}&nbsp;
-            <span className="text-[#0070c2]">{ind.accent}</span>
-          </h3>
-        </div>
-
-        {/* Divider */}
-        <div className="w-10 h-0.5 bg-gradient-to-r from-[#0070c2] to-blue-400 rounded-full mb-3" />
-
-        {/* Description */}
-        <p className="text-sm text-slate-500 leading-relaxed mb-4 line-clamp-3">
-          {ind.description}
-        </p>
-
-        {/* Feature points */}
-        <ul className="space-y-2 mb-5">
-          {ind.points.map((pt) => (
-            <li key={pt} className="flex items-center gap-2.5">
-              <div className="w-4 h-4 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                <LuCheck className="text-[#0070c2]" size={9} />
-              </div>
-              <span className="text-xs font-medium text-slate-600">{pt}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 mb-5">
-          {ind.stats.map((s, si) => (
-            <div key={si} className="text-center">
-              <div className="text-xl font-extrabold text-[#0070c2] tracking-tight">{s.value}</div>
-              <div className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mt-0.5">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <button className="w-full inline-flex items-center justify-center gap-2 bg-[#0070c2] hover:bg-[#005bb5] text-white font-semibold py-2.5 px-5 rounded-xl transition-all hover:scale-105 shadow-md shadow-[#0070c2]/20 text-sm">
-          Learn More <LuArrowRight size={13} />
-        </button>
-      </div>
-    </div>
-  );
-};
-
-/* ─── Main Component ────────────────────────────────────── */
 const Industries = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
     let ctx = gsap.context(() => {
-      /* Hero */
+      /* Hero Reveal */
       gsap.from('.hero-reveal', {
         y: 40, opacity: 0, duration: 1.2, stagger: 0.15, ease: 'power4.out',
       });
 
-      /* Stats */
+      /* Stats Bar */
       gsap.from('.stat-item', {
         y: 20, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
         scrollTrigger: { trigger: '.stat-bar', start: 'top 85%' },
       });
 
-      /* Section heading */
+      /* Section Heading */
       gsap.from('.sec-heading', {
         y: 30, opacity: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out',
         scrollTrigger: { trigger: '.sec-heading', start: 'top 85%' },
       });
 
-      /* Cards */
-      gsap.from('.ind-card', {
-        y: 50, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out',
-        scrollTrigger: { trigger: '.ind-grid', start: 'top 80%' },
+      /* Alternating Rows Slide-in */
+      const rows = gsap.utils.toArray('.ind-row');
+      rows.forEach((row) => {
+        const image = row.querySelector('.ind-image-wrapper');
+        const text = row.querySelector('.ind-text-wrapper');
+        const isEven = row.classList.contains('lg:flex-row');
+
+        gsap.from(image, {
+          x: isEven ? -60 : 60,
+          opacity: 0,
+          duration: 1.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
+
+        gsap.from(text, {
+          x: isEven ? 60 : -60,
+          opacity: 0,
+          duration: 1.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
+        });
       });
 
-      /* Why section */
-      gsap.from('.why-item', {
-        y: 24, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
-        scrollTrigger: { trigger: '.why-section', start: 'top 80%' },
-      });
-
-      /* CTA */
+      /* CTA section */
       gsap.from('.cta-reveal', {
         y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
         scrollTrigger: { trigger: '#cta-section', start: 'top 85%' },
@@ -292,10 +231,10 @@ const Industries = () => {
   return (
     <div
       ref={containerRef}
-      className="bg-slate-50 min-h-screen overflow-hidden"
+      className="bg-slate-50 min-h-screen overflow-hidden animate-fade-in"
       style={{ fontFamily: "'Outfit', sans-serif" }}
     >
-      {/* Subtle blueprint background */}
+      {/* Subtle blueprint grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70 pointer-events-none z-0" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,rgba(0,112,194,0.06),transparent)] pointer-events-none z-0" />
 
@@ -303,16 +242,16 @@ const Industries = () => {
           HERO
       ══════════════════════════════════════════ */}
       <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-36 px-6 lg:px-8 overflow-hidden min-h-[70vh] flex flex-col justify-center">
-        {/* BG image */}
+        {/* BG Image */}
         <div className="absolute inset-0 z-0">
           <img src={industriesBg} alt="Industries Background" className="w-full h-full object-cover object-center" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1526]/94 via-[#0a1526]/78 to-[#0a1526]/55" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0070c2]/18 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a1526]/96 via-[#0a1526]/80 to-[#0a1526]/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0070c2]/20 via-transparent to-transparent" />
         </div>
 
-        {/* Glow orb */}
+        {/* Floating backdrop glow orb */}
         <div className="absolute right-[8%] top-[18%] w-80 h-80 rounded-full pointer-events-none z-[1]"
-          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.14) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+          style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
         <div className="max-w-5xl mx-auto relative z-10 text-center">
           <div className="hero-reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md shadow-sm mb-6">
@@ -321,7 +260,7 @@ const Industries = () => {
           </div>
 
           <h1 className="hero-reveal text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.1] mb-6">
-            Tailored Solutions for&nbsp;
+            Tailored Solutions for<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#38bdf8] to-blue-400">
               Every Sector
             </span>
@@ -335,14 +274,14 @@ const Industries = () => {
 
           <div className="hero-reveal flex flex-wrap gap-4 justify-center">
             <button
-              onClick={() => document.getElementById('industries-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              className="bg-[#0070c2] hover:bg-[#005bb5] text-white font-semibold py-3 px-8 rounded-xl transition-all hover:scale-105 shadow-lg shadow-[#0070c2]/40 text-sm"
+              onClick={() => document.getElementById('industries-showcase')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              className="bg-[#0070c2] hover:bg-[#005bb5] text-white font-semibold py-3.5 px-8 rounded-2xl transition-all hover:scale-105 shadow-lg shadow-[#0070c2]/40 text-sm"
             >
               Explore Industries &rarr;
             </button>
             <button
               onClick={() => document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="border border-white/30 hover:border-white/60 text-white font-semibold py-3 px-8 rounded-xl transition-all text-sm backdrop-blur-sm hover:bg-white/10"
+              className="border border-white/30 hover:border-white/60 text-white font-semibold py-3.5 px-8 rounded-2xl transition-all text-sm backdrop-blur-sm hover:bg-white/10"
             >
               Contact Us
             </button>
@@ -388,87 +327,130 @@ const Industries = () => {
             </span>
           </h2>
 
-          <p className="sec-heading text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="sec-heading text-slate-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-light">
             From manufacturing floors to healthcare corridors — we deliver purpose-built
-            software solutions across 7 key sectors.
+            software solutions across 7 key sectors, presented one by one below.
           </p>
         </div>
       </section>
 
       {/* ══════════════════════════════════════════
-          INDUSTRY CARDS GRID
+          INDUSTRIES LIST (ONE-BY-ONE ALTERNATING LAYOUT)
       ══════════════════════════════════════════ */}
-      <section id="industries-grid" className="ind-grid py-10 px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {industries.map((ind, idx) => (
-            <IndustryCard key={ind.id} ind={ind} idx={idx} />
-          ))}
-        </div>
-      </section>
+      <section id="industries-showcase" className="py-10 px-6 lg:px-8 relative z-10 space-y-16 max-w-6xl mx-auto">
+        {industries.map((ind, idx) => {
+          const Icon = ind.icon;
+          const isEven = idx % 2 === 0;
 
-      {/* ══════════════════════════════════════════
-          WHY PROBUS
-      ══════════════════════════════════════════ */}
-      <section className="why-section py-20 px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 md:p-14 relative overflow-hidden">
-            {/* Subtle radial accent */}
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full pointer-events-none"
-              style={{ background: 'radial-gradient(circle, rgba(0,112,194,0.05) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+          return (
+            <div
+              key={ind.id}
+              className={`ind-row flex flex-col ${
+                isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+              } gap-8 lg:gap-12 items-center bg-white/70 backdrop-blur-md rounded-3xl border border-slate-200/60 p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-xl hover:border-blue-500/20 transition-all duration-500`}
+            >
+              {/* Image Side */}
+              <div className="w-full lg:w-1/2 shrink-0 relative group ind-image-wrapper">
+                {/* Backdrop Glow */}
+                <div className="absolute -inset-2 bg-gradient-to-r from-[#0070c2] to-blue-400 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none" />
 
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              {/* Left */}
-              <div>
-                <div className="why-item inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-5">
-                  <span className="flex items-center justify-center w-4 h-4 rounded-full bg-blue-50">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0070c2]" />
-                  </span>
-                  <span className="text-[10px] font-bold tracking-widest text-slate-700 uppercase pr-1">Why Probus</span>
+                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-md border border-slate-100">
+                  <img
+                    src={ind.image}
+                    alt={ind.badge}
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  />
+                  {/* Vignette Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Left Tag Badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0070c2] text-white text-xs font-bold tracking-wide shadow-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
+                      {ind.badge}
+                    </span>
+                  </div>
+
+                  {/* Index badge bottom right */}
+                  <div className="absolute bottom-4 right-4 z-10 px-3 py-1.5 rounded-xl bg-slate-950/40 backdrop-blur-md border border-white/20 text-white font-bold text-sm">
+                    0{idx + 1}
+                  </div>
+                </div>
+              </div>
+
+              {/* Text Content Side */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-between ind-text-wrapper">
+                <div>
+                  {/* Icon & Sub-header */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-11 h-11 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 shadow-sm">
+                      <Icon className="text-[#0070c2] text-lg" />
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#0070c2] bg-blue-50/50 px-3 py-1 rounded-md">
+                      Sector Focus
+                    </span>
+                  </div>
+
+                  {/* Industry Title */}
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 leading-tight tracking-tight mb-3 font-outfit">
+                    {ind.title}&nbsp;
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070c2] to-blue-500">
+                      {ind.accent}
+                    </span>
+                  </h3>
+
+                  {/* Accent Line */}
+                  <div className="w-14 h-1 bg-gradient-to-r from-[#0070c2] to-blue-400 rounded-full mb-5" />
+
+                  {/* Paragraph */}
+                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-5 font-light">
+                    {ind.description}
+                  </p>
+
+                  {/* Modules grid */}
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {ind.points.map((pt) => (
+                      <li key={pt} className="flex items-start gap-2.5">
+                        <div className="w-4.5 h-4.5 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                          <LuCheck className="text-[#0070c2]" size={10} />
+                        </div>
+                        <span className="text-xs sm:text-sm font-medium text-slate-700">{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <h3 className="why-item text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4 tracking-tight">
-                  Built for your industry,&nbsp;
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070c2] to-blue-500">
-                    not just adapted.
-                  </span>
-                </h3>
-
-                <p className="why-item text-slate-600 leading-relaxed mb-6">
-                  Unlike generic ERP vendors, Probus Software develops purpose-built solutions for each vertical —
-                  embedding 15+ years of domain knowledge directly into the product, so you get faster ROI and
-                  less customisation overhead.
-                </p>
-
-                <button className="why-item inline-flex items-center gap-2 bg-[#0070c2] hover:bg-[#005bb5] text-white font-semibold py-2.5 px-6 rounded-xl transition-all hover:scale-105 shadow-lg shadow-[#0070c2]/30 text-sm">
-                  Get a Free Consultation <LuArrowRight size={13} />
-                </button>
-              </div>
-
-              {/* Right */}
-              <div className="grid grid-cols-1 gap-3">
-                {[
-                  { icon: LuCheck, title: 'Domain-Specific Modules',   desc: 'Pre-configured for your industry workflows out of the box.' },
-                  { icon: LuCheck, title: 'Rapid Implementation',       desc: '60% faster go-live with our industry accelerator packs.' },
-                  { icon: LuCheck, title: 'Ongoing Compliance Updates', desc: 'Regulatory changes built in — HIPAA, FSSAI, GST and more.' },
-                  { icon: LuCheck, title: 'Dedicated Industry Teams',   desc: 'Consultants who have worked inside your industry, not just with it.' },
-                ].map((item, i) => {
-                  const ItemIcon = item.icon;
-                  return (
-                    <div key={i} className="why-item flex gap-4 items-start p-4 rounded-xl border border-slate-100 bg-slate-50 hover:border-[#0070c2]/30 hover:shadow-md hover:shadow-blue-500/5 transition-all duration-200">
-                      <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
-                        <ItemIcon size={14} className="text-[#0070c2]" />
+                {/* Statistics panel & CTA */}
+                <div className="flex flex-col sm:flex-row gap-5 items-stretch sm:items-center pt-5 border-t border-slate-100">
+                  {/* Statistics */}
+                  <div className="grid grid-cols-2 gap-3 flex-grow">
+                    {ind.stats.map((s, si) => (
+                      <div
+                        key={si}
+                        className="bg-slate-50 border border-slate-100/80 rounded-2xl p-2.5 text-center hover:bg-blue-50/20 hover:border-blue-100 transition-colors duration-300"
+                      >
+                        <div className="text-lg sm:text-xl font-extrabold text-[#0070c2] tracking-tight">
+                          {s.value}
+                        </div>
+                        <div className="text-[9px] font-bold uppercase tracking-wider text-slate-400 mt-0.5">
+                          {s.label}
+                        </div>
                       </div>
-                      <div>
-                        <div className="text-sm font-bold text-slate-900 mb-0.5">{item.title}</div>
-                        <div className="text-xs text-slate-500 leading-relaxed">{item.desc}</div>
-                      </div>
-                    </div>
-                  );
-                })}
+                    ))}
+                  </div>
+
+                  {/* CTA button */}
+                  <button 
+                    onClick={() => document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="inline-flex items-center justify-center gap-2 bg-[#0070c2] hover:bg-[#005bb5] text-white font-semibold py-2.5 px-5 rounded-2xl transition-all hover:scale-[1.03] shadow-md shadow-[#0070c2]/20 hover:shadow-lg text-xs sm:text-sm whitespace-nowrap"
+                  >
+                    Consult Expert <LuArrowRight size={13} />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </section>
 
       {/* ══════════════════════════════════════════
