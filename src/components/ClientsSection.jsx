@@ -20,16 +20,20 @@ const categorySortOrder = [
 ];
 
 // LogoCard component
-const LogoCard = ({ logo }) => (
+const LogoCard = ({ logo, isLarge = false }) => (
   <div
-    className="group relative bg-white border border-slate-100 hover:border-blue-200 rounded-2xl h-20 w-32 flex-shrink-0 flex items-center justify-center p-2 shadow-sm hover:shadow-[0_8px_25px_rgba(0,112,194,0.08)] hover:-translate-y-0.5 transition-all duration-400 ease-out mx-2.5"
+    className={`group relative bg-white border border-slate-100 hover:border-blue-200 rounded-2xl flex-shrink-0 flex items-center justify-center p-2 shadow-sm hover:shadow-[0_8px_25px_rgba(0,112,194,0.08)] hover:-translate-y-0.5 transition-all duration-400 ease-out mx-2.5 ${
+      isLarge ? 'h-20 w-36' : 'h-16 w-28'
+    }`}
     title={logo.name}
   >
     <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/0 to-blue-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
     <img
       src={logo.url}
       alt={logo.name}
-      className="max-h-[85%] max-w-[92%] object-contain opacity-100 group-hover:scale-105 transition-transform duration-400 ease-out z-10"
+      className={`object-contain opacity-100 group-hover:scale-105 transition-transform duration-400 ease-out z-10 ${
+        isLarge ? 'max-h-[90%] max-w-[95%]' : 'max-h-[85%] max-w-[92%]'
+      }`}
       loading="lazy"
     />
   </div>
@@ -225,7 +229,7 @@ const ClientsSection = () => {
                   onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
                 >
                   {row1Doubled.map((logo, idx) => (
-                    <LogoCard key={`r1-${idx}`} logo={logo} />
+                    <LogoCard key={`r1-${idx}`} logo={logo} isLarge={['Technology and Electronics', 'Healthcare and Pharmaceutical', 'Logistics and Trading', 'Food Industry & Agro', 'IFM and Security Services'].includes(activeTab)} />
                   ))}
                 </div>
               </div>
@@ -244,7 +248,7 @@ const ClientsSection = () => {
                   onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
                 >
                   {row2Doubled.map((logo, idx) => (
-                    <LogoCard key={`r2-${idx}`} logo={logo} />
+                    <LogoCard key={`r2-${idx}`} logo={logo} isLarge={['Technology and Electronics', 'Healthcare and Pharmaceutical', 'Logistics and Trading', 'Food Industry & Agro', 'IFM and Security Services'].includes(activeTab)} />
                   ))}
                 </div>
               </div>
@@ -285,7 +289,7 @@ const ClientsSection = () => {
                       onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
                     >
                       {partnerRow1Doubled.map((logo, idx) => (
-                        <LogoCard key={`partner-r1-${idx}`} logo={logo} />
+                        <LogoCard key={`partner-r1-${idx}`} logo={logo} isLarge={true} />
                       ))}
                     </div>
                   </div>
@@ -304,7 +308,7 @@ const ClientsSection = () => {
                       onMouseLeave={e => e.currentTarget.style.animationPlayState = 'running'}
                     >
                       {partnerRow2Doubled.map((logo, idx) => (
-                        <LogoCard key={`partner-r2-${idx}`} logo={logo} />
+                        <LogoCard key={`partner-r2-${idx}`} logo={logo} isLarge={true} />
                       ))}
                     </div>
                   </div>

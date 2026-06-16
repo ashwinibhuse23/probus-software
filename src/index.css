@@ -320,7 +320,7 @@
   transition-delay: 0.3s;
 }
 
-/* From Uiverse.io by nikk7007 */ 
+/* From Uiverse.io by nikk7007 */
 .slice {
   --c1: #ffffff;
   --c2: #0070c2;
@@ -343,7 +343,7 @@
   letter-spacing: 0.1em;
 }
 
-.slice > .text {
+.slice>.text {
   font-weight: 600;
   color: var(--c2);
   position: relative;
@@ -369,7 +369,7 @@
   border-color: var(--c2);
 }
 
-.slice:hover > .text {
+.slice:hover>.text {
   color: var(--c1);
 }
 
@@ -387,6 +387,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
